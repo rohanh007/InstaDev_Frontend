@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 const Signin = () => {
     const [Formdata, setFormdata] = useState({
         email: '',
@@ -7,7 +8,7 @@ const Signin = () => {
         fullname: '',
         username: ''
     });
-
+   const navigator=useNavigate();
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormdata({
@@ -19,10 +20,10 @@ const Signin = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(Formdata); // Logs form data to console
-        axios.post('http://localhost:6500/signauth',Formdata)
+        axios.post('http://localhost:6500/api/signauth',Formdata)
 
         
-        
+        navigator('/login');
     };
 
     return (
@@ -45,14 +46,14 @@ const Signin = () => {
                                 <input 
                                     type="email" 
                                     name="email" 
-                                    id="foremail" 
+                                    id="floating_input" 
                                     onChange={handleChange}
                                     className="block py-2.5 px-3 w-full text-sm text-gray-900 bg-transparent border-2 border-gray-300 rounded-md focus:outline-none focus:ring-0 focus:border-gray-800 transition-colors duration-300 placeholder-transparent"
                                     placeholder="Email" 
                                     required 
                                 />
                                 <label 
-                                    htmlFor="foremail"
+                                    htmlFor="floating_input"
                                     className="absolute z-10 px-2 bg-white text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 left-3 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:left-3 peer-placeholder-shown:text-gray-400 peer-focus:left-3 peer-focus:text-gray-800 peer-focus:scale-75 peer-focus:-translate-y-6"
                                 >
                                     Email
@@ -64,14 +65,14 @@ const Signin = () => {
                                 <input 
                                     type="password" 
                                     name="password" 
-                                    id="forpassword" 
+                                    id="floating_input" 
                                     onChange={handleChange}
                                     className="block py-2.5 px-3 w-full text-sm text-gray-900 bg-transparent border-2 border-gray-300 rounded-md focus:outline-none focus:ring-0 focus:border-gray-800 transition-colors duration-300 placeholder-transparent"
                                     placeholder="Password" 
                                     required 
                                 />
                                 <label 
-                                    htmlFor="forpassword"
+                                    htmlFor="floating_input"
                                     className="absolute z-10 px-2 bg-white text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 left-3 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:left-3 peer-placeholder-shown:text-gray-400 peer-focus:left-3 peer-focus:text-gray-800 peer-focus:scale-75 peer-focus:-translate-y-6"
                                 >
                                     Password
@@ -83,14 +84,14 @@ const Signin = () => {
                                 <input 
                                     type="text" 
                                     name="fullname" 
-                                    id="forfullname" 
+                                    id="floating_input" 
                                     onChange={handleChange}
                                     className="block py-2.5 px-3 w-full text-sm text-gray-900 bg-transparent border-2 border-gray-300 rounded-md focus:outline-none focus:ring-0 focus:border-gray-800 transition-colors duration-300 placeholder-transparent"
                                     placeholder="Full name" 
                                     required 
                                 />
                                 <label 
-                                    htmlFor="forfullname"
+                                    htmlFor="floating_input"
                                     className="absolute z-10 px-2 bg-white text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 left-3 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:left-3 peer-placeholder-shown:text-gray-400 peer-focus:left-3 peer-focus:text-gray-800 peer-focus:scale-75 peer-focus:-translate-y-6"
                                 >
                                     Full name
@@ -102,14 +103,14 @@ const Signin = () => {
                                 <input 
                                     type="text" 
                                     name="username" 
-                                    id="foruser" 
+                                    id="floating_input" 
                                     onChange={handleChange}
                                     className="block py-2.5 px-3 w-full text-sm text-gray-900 bg-transparent border-2 border-gray-300 rounded-md focus:outline-none focus:ring-0 focus:border-gray-800 transition-colors duration-300 placeholder-transparent"
                                     placeholder="Username" 
                                     required 
                                 />
                                 <label 
-                                    htmlFor="foruser"
+                                    htmlFor="floating_input"
                                     className="absolute z-10 px-2 bg-white text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 left-3 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:left-3 peer-placeholder-shown:text-gray-400 peer-focus:left-3 peer-focus:text-gray-800 peer-focus:scale-75 peer-focus:-translate-y-6"
                                 >
                                     Username
@@ -118,7 +119,7 @@ const Signin = () => {
                         </div>
 
                         <div className="pt-4 text-center">
-                            <button type="submit" className="bg-blue-500 p-1 text-white rounded-md">
+                            <button type="submit" className="w-full bg-blue-500 p-1 text-white rounded-md">
                                 Sign In
                             </button>
                         </div>
@@ -126,7 +127,7 @@ const Signin = () => {
                 </div>
 
                 <div className="w-4/5 sm:w-[60%] md:w-[35%] lg:w-[30%] ml-auto mr-auto border-2 py-2 mt-2 text-center">
-                    <p className="pt-3">You have an account? <a href='#'>Log in</a></p>
+                    <p className="pt-3">You have an account?<Link to='/login'>Login In </Link></p>
                 </div>
             </div>
         </div>
